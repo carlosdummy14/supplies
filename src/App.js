@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-function App() {
+import './App.css'
+import ListOfItems from './components/ListOfItems'
+import Navbar from './components/Navbar'
+import ShoppingCar from './components/ShoppingCar'
+import { getAllItems } from './reducers/itemsReducer'
+import { getAll } from './services/items'
+
+const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    getAll().then((items) => {
+      dispatch(getAllItems(items))
+    })
+  }, [dispatch])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Navbar />
+      <div className='App'>
+        <Switch>
+          <Route component={ShoppingCar} path='/shoppingcar' />
+          <Route path='/:id'>
+            <div>This is a details of product</div>
+          </Route>
+          <Route exact component={ListOfItems} path='/' />
+          <Route>
+            <div>Not Found</div>
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

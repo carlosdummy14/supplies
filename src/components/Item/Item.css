@@ -1,0 +1,13 @@
+.Item {
+ 
+  border: 1px solid black;
+  width: 200px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.Item p {
+  padding: 0;
+  margin: 0;
+}
