@@ -6,6 +6,7 @@ import './App.css'
 import ListOfItems from './components/ListOfItems'
 import Navbar from './components/Navbar'
 import ShoppingCar from './components/ShoppingCar'
+import AddItem from './pages/AddItem'
 import { getAllItems } from './reducers/itemsReducer'
 import { getAll } from './services/items'
 
@@ -23,11 +24,12 @@ const App = () => {
       <Navbar />
       <div className='App'>
         <Switch>
+          <Route exact component={ListOfItems} path='/' />
           <Route component={ShoppingCar} path='/shoppingcar' />
+          <Route component={AddItem} path='/add-item' />
           <Route path='/:id'>
             <div>This is a details of product</div>
           </Route>
-          <Route exact component={ListOfItems} path='/' />
           <Route>
             <div>Not Found</div>
           </Route>
