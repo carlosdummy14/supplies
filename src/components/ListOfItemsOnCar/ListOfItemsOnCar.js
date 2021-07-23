@@ -1,9 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addItemCarAction } from '../../reducers/carReducer'
+import { deleteItemCarAction, incrementItem, decrementItem } from '../../reducers/carReducer'
 import ItemOnCar from '../ItemOnCar'
 import './ListOfItemsOnCar.css'
+
+const INC_DEC = {
+  INCREMENT: 'increment',
+  DECREMENT: 'decrement'
+}
 
 const ListOfItemsOnCar = () => {
   const dispatch = useDispatch()
@@ -11,19 +16,24 @@ const ListOfItemsOnCar = () => {
     return car
   })
 
-  const handleClick = (item) => {
-    dispatch(addItemCarAction(item))
+  const handleDeleteItem = (item) => {
+    dispatch(deleteItemCarAction(item))
+  }
+
+  const handleIncDec = (item, incDec) => {
+    incDec === INC_DEC.INCREMENT && dispatch(incrementItem(item))
+    incDec === INC_DEC.DECREMENT && dispatch(decrementItem(item))
   }
 
   return (
     <div className='ListOfItemsOnCar'>
-      {!items
+      {items.length === 0
         ? (
-          <div>Nothing to show...</div>
+          <div>Empty car!!</div>
           )
         : (
             items.map((item) => (
-              <ItemOnCar key={item.item.id} handleClick={handleClick} item={item} />
+              <ItemOnCar key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} incDec={INC_DEC} item={item} />
             ))
           )}
     </div>
