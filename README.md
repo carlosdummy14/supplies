@@ -28,7 +28,6 @@ Launches a json-server with the information of db.json file.\
   - Save state of car in local session
 
 #### Add item page
-  - Form definition
   - Form validation
 
 #### Next
@@ -36,3 +35,5 @@ Launches a json-server with the information of db.json file.\
   - Log items in or out
   - Inventory reports
   
+#### done
+  - Form definition

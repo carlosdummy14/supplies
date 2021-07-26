@@ -21,6 +21,9 @@ const Navbar = () => {
         <h2>Suministros</h2>
       </Link>
       <Search />
+      <Link to='/add-item'>
+        Add New Item
+      </Link>
       <div className='ShoppingCar'>
         <Link to='/shoppingcar'>
           <div>Carrito</div>
