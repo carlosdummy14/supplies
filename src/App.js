@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import './App.css'
@@ -7,17 +6,10 @@ import ListOfItems from './components/ListOfItems'
 import Navbar from './components/Navbar'
 import ShoppingCar from './components/ShoppingCar'
 import AddItem from './pages/AddItem'
-import { getAllItems } from './reducers/itemsReducer'
-import { getAll } from './services/items'
+import useGetAllItems from './hooks/useGetAllItems'
 
 const App = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    getAll().then((items) => {
-      dispatch(getAllItems(items))
-    })
-  }, [dispatch])
+  useGetAllItems()
 
   return (
     <BrowserRouter>
