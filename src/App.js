@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import ShoppingCar from './components/ShoppingCar'
 import AddItem from './pages/AddItem'
 import useGetAllItems from './hooks/useGetAllItems'
+import BuyItems from './pages/BuyItems'
 
 const App = () => {
   useGetAllItems()
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact component={ListOfItems} path='/' />
           <Route component={ShoppingCar} path='/shoppingcar' />
           <Route component={AddItem} path='/add-item' />
+          <Route component={BuyItems} path='/buy-items' />
           <Route path='/:id'>
             <div>This is a details of product</div>
           </Route>

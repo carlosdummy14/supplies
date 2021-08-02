@@ -29,7 +29,7 @@ const ListOfItems = () => {
           )
         : (
             items.map((item) => (
-              <Item key={item.id} handleClick={handleClick} item={item} />
+              <Item key={item.id} canBuy={item.stock > 0} handleClick={handleClick} item={item} />
             ))
           )}
     </div>

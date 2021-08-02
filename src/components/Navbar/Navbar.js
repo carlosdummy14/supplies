@@ -24,6 +24,9 @@ const Navbar = () => {
       <Link to='/add-item'>
         Add New Item
       </Link>
+      <Link to='/buy-items'>
+        Buy Items
+      </Link>
       <div className='ShoppingCar'>
         <Link to='/shoppingcar'>
           <div>Carrito</div>

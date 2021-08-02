@@ -10,7 +10,7 @@ const INC_DEC = {
   DECREMENT: 'decrement'
 }
 
-const ListOfItemsOnCar = () => {
+const ListOfItemsOnCar = ({ isConfirm }) => {
   const dispatch = useDispatch()
   const items = useSelector(({ car }) => {
     return car
@@ -33,7 +33,7 @@ const ListOfItemsOnCar = () => {
           )
         : (
             items.map((item) => (
-              <ItemOnCar key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} incDec={INC_DEC} item={item} />
+              <ItemOnCar key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} incDec={INC_DEC} isConfirm={isConfirm} item={item} />
             ))
           )}
     </div>

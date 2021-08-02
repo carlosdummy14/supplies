@@ -3,7 +3,7 @@ import React from 'react'
 import './ItemOnCar.css'
 import Button from '../Button'
 
-const ItemOnCar = ({ item, incDec, handleDeleteItem, handleIncDec }) => {
+const ItemOnCar = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm }) => {
   const { item: { img, name, description, stock }, qty } = item
 
   return (
@@ -16,11 +16,12 @@ const ItemOnCar = ({ item, incDec, handleDeleteItem, handleIncDec }) => {
       </div>
 
       <div className='quantity-container'>
-        <button onClick={() => handleIncDec(item.item, incDec.DECREMENT)}>-</button>
+        {isConfirm ? null : <Button handleClick={() => handleIncDec(item.item, incDec.DECREMENT)} text='-' />}
         <span className='quantity'>{qty}</span>
-        <button onClick={() => handleIncDec(item.item, incDec.INCREMENT)}>+</button>
+        {isConfirm ? null : <Button handleClick={() => handleIncDec(item.item, incDec.INCREMENT)} text='+' />}
       </div>
-      <Button handleClick={() => handleDeleteItem(item.item)} text='X' />
+      {isConfirm ? null : <Button handleClick={() => handleDeleteItem(item.item)} text='X' />}
+      {isConfirm && (qty > stock) ? <span style={{ color: 'red' }}>Not enough stock for this item</span> : null}
     </div>
   )
 }

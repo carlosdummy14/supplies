@@ -3,7 +3,7 @@ import React from 'react'
 import './Item.css'
 import Button from '../Button'
 
-const Item = ({ item, handleClick }) => {
+const Item = ({ item, handleClick, canBuy }) => {
   const { img, name, description, stock } = item
 
   return (
@@ -14,7 +14,11 @@ const Item = ({ item, handleClick }) => {
       <h3>{name}</h3>
       <p>{description}</p>
       <p>{stock}</p>
-      <Button handleClick={() => handleClick(item)} text='Agregar' />
+      {
+        canBuy
+          ? <Button handleClick={() => handleClick(item)} text='Agregar' />
+          : null
+      }
     </div>
   )
 }

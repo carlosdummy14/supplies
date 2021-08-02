@@ -1,6 +1,7 @@
 const ACTIONS_CAR = {
   ADD_ITEM: '@car/add_item',
   DELETE_ITEM: '@car/delete_item',
+  EMPTY_CAR: '@car/empty_car',
   INC_ITEM: '@car/inc_item',
   DEC_ITEM: '@car/dec_item'
 }
@@ -36,6 +37,10 @@ export const carReducer = (state = [], action) => {
 
     case ACTIONS_CAR.DELETE_ITEM: {
       return state.filter((item) => item.item.id !== action.payload.id)
+    }
+
+    case ACTIONS_CAR.EMPTY_CAR: {
+      return []
     }
 
     case ACTIONS_CAR.INC_ITEM: {
@@ -95,5 +100,11 @@ export const decrementItem = (item) => {
   return {
     type: ACTIONS_CAR.DEC_ITEM,
     payload: item
+  }
+}
+
+export const emptyCar = () => {
+  return {
+    type: ACTIONS_CAR.EMPTY_CAR
   }
 }
