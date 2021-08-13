@@ -1,81 +1,94 @@
 import React from 'react'
 import { Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 
-import { addItem } from '../reducers/itemsReducer'
+import { addItemToBuy, emptyBuy } from '../reducers/buyReducer'
+import ListItemsToBuy from '../components/ListItemsToBuy'
 
 const initialValues = {
   name: '',
   quantity: 1
 }
 
-const BuyItemsSchema = Yup.object().shape({
-  name: Yup.string().min(5).max(30, 'Too Long!').required('Required'),
-  quantity: Yup.number().positive().integer().max(99).required('Required')
-})
+const BuyItemsSchema = (items = []) => {
+  return Yup.object().shape({
+    name: Yup.string().oneOf(items, 'Item not valid').required('Required'),
+    quantity: Yup.number().positive().integer().max(99).required('Required')
+  })
+}
 
 const styles = {
   form: {
     display: 'flex',
-    flexDirection: 'column',
-    width: '500px',
+    width: '600px',
     margin: '0 auto'
   }
 }
 
 const BuyItems = () => {
+  const items = useSelector(({ items }) => items.map(item => item.name))
   const dispatch = useDispatch()
-  const items = useSelector(({ items }) => items)
-  const history = useHistory()
+  // const history = useHistory()
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, { resetForm }) => {
     const { name, quantity } = values
     const newItem = {
-      id: items.length + 1,
       name: name.toUpperCase(),
-      quantity: quantity,
-      available: true,
-      createdAt: '2021-04-09T22:51:55.756Z'
+      quantity: quantity
     }
 
-    dispatch(addItem(newItem))
+    dispatch(addItemToBuy(newItem))
+    resetForm(initialValues)
+  }
 
-    history.replace('/')
+  const handleClear = () => {
+    dispatch(emptyBuy())
   }
 
   return (
     <>
       <h1>Buy Items</h1>
-      <div>list of items buyed</div>
       <Formik
         initialValues={initialValues}
-        validationSchema={BuyItemsSchema}
+        validationSchema={BuyItemsSchema(items)}
         onSubmit={handleSubmit}
       >
         {
           ({ errors, touched }) => (
             <Form style={styles.form}>
               <label htmlFor='name'>Name</label>
-              <Field autoFocus='autofocus' name='name' type='text' />
-              {
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Field autoFocus='autofocus' list='nameList' name='name' />
+                <datalist id='nameList'>
+                  {
+                    items.map((item) => <option key={`${item}`} value={`${item}`} />)
+                  }
+                </datalist>
+                {
                 errors.name && touched.name
-                  ? (<div>{errors.name}</div>)
+                  ? (<span>{errors.name}</span>)
                   : null
-              }
+                }
+              </div>
               <label htmlFor='quantity'>Quantity</label>
-              <Field name='quantity' type='number' />
-              {
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Field name='quantity' type='number' />
+                {
                 errors.quantity && touched.quantity
-                  ? (<div>{errors.quantity}</div>)
+                  ? (<span>{errors.quantity}</span>)
                   : null
               }
+              </div>
+
               <button type='submit'>Submit</button>
+              <button type='button' onClick={handleClear}>Clear Buy</button>
             </Form>
           )
         }
       </Formik>
+      <ListItemsToBuy />
     </>
   )
 }

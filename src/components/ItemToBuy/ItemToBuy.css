@@ -1,0 +1,24 @@
+.ItemToBuy {
+  border: 1px solid black;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  align-items: center;
+}
+
+.ItemToBuy p {
+  padding: 0;
+  margin: 0;
+}
+
+.quantity-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.quantity {
+  width: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size:x-large;
+}
