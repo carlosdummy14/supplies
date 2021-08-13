@@ -28,8 +28,11 @@ Launches a json-server with the information of db.json file.\
   - **DONE** Form definition
   - **DONE** Form validation
 - Buy inventory
-  - Form definition, for various items in one purchase
-  - Form validation 
+  - **DONE** Form definition, for various items in one purchase
+  - **DONE** Form validation 
+  - **DONE** List of items to buy
+  - Confirm purchase
+  - Update items quantities
 
 #### Shopping car
 
@@ -41,4 +44,7 @@ Launches a json-server with the information of db.json file.\
 - Add quantity to items
 - Items Logs, input and output transactions
 - Inventory reports to PDF format
+- Refacto Item components, use only one
+- Refacto INC-DEC items
+- Unify Yup validation schemas
   

@@ -12,9 +12,7 @@ const INC_DEC = {
 
 const ListOfItemsOnCar = ({ isConfirm }) => {
   const dispatch = useDispatch()
-  const items = useSelector(({ car }) => {
-    return car
-  })
+  const items = useSelector(({ car }) => car)
 
   const handleDeleteItem = (item) => {
     dispatch(deleteItemCarAction(item))

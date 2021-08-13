@@ -13,12 +13,14 @@ const initialValues = {
   image: ''
 }
 
-const AddItemSchema = Yup.object().shape({
-  name: Yup.string().min(5).max(30, 'Too Long!').required('Required'),
-  description: Yup.string().min(10).max(40, 'Too Long!').required('Required'),
-  stock: Yup.number().positive().integer().max(99).required('Required'),
-  image: Yup.string()
-})
+const AddItemSchema = (items) => {
+  return Yup.object().shape({
+    name: Yup.string().min(5).max(30, 'Too Long!').required('Required').trim().notOneOf(items, 'Item already exist'),
+    description: Yup.string().min(10).max(40, 'Too Long!').required('Required'),
+    stock: Yup.number().positive().integer().max(99).required('Required'),
+    image: Yup.string()
+  })
+}
 
 const styles = {
   form: {
@@ -31,14 +33,14 @@ const styles = {
 
 const AddItem = () => {
   const dispatch = useDispatch()
-  const items = useSelector(({ items }) => items)
+  const items = useSelector(({ items }) => items.map(item => item.name))
   const history = useHistory()
 
   const handleSubmit = (values) => {
     const { name, description, stock, image } = values
     const newItem = {
       id: items.length + 1,
-      name: name.toUpperCase(),
+      name: name,
       description: description,
       stock: stock,
       available: true,
@@ -51,45 +53,61 @@ const AddItem = () => {
     history.replace('/')
   }
 
+  const handleNameInput = (e, setValues) => {
+    setValues(
+      prevValues => (
+        {
+          ...prevValues,
+          [e.target.name]: e.target.value.toUpperCase()
+        }
+      )
+    )
+  }
+
   return (
     <>
       <h1>Add new Item</h1>
       <Formik
         initialValues={initialValues}
-        validationSchema={AddItemSchema}
+        validationSchema={AddItemSchema(items)}
         onSubmit={handleSubmit}
       >
         {
-          ({ errors, touched }) => (
+          ({ errors, touched, setValues }) => (
             <Form style={styles.form}>
               <label htmlFor='name'>Name</label>
-              <Field autoFocus='autofocus' name='name' type='text' />
-              {errors.name && touched.name
-                ? (
-                  <div>{errors.name}</div>
-                  )
-                : null}
+              <Field
+                autoFocus='autofocus'
+                name='name'
+                type='text'
+                onChange={e => handleNameInput(e, setValues)}
+              />
+              {
+                errors.name && touched.name
+                  ? (<div>{errors.name}</div>)
+                  : null
+              }
               <label htmlFor='description'>Description</label>
               <Field name='description' type='text' />
-              {errors.description && touched.description
-                ? (
-                  <div>{errors.description}</div>
-                  )
-                : null}
+              {
+                errors.description && touched.description
+                  ? (<div>{errors.description}</div>)
+                  : null
+              }
               <label htmlFor='stock'>Description</label>
               <Field name='stock' type='number' />
-              {errors.stock && touched.stock
-                ? (
-                  <div>{errors.stock}</div>
-                  )
-                : null}
+              {
+                errors.stock && touched.stock
+                  ? (<div>{errors.stock}</div>)
+                  : null
+              }
               <label htmlFor='image'>Image</label>
               <Field name='image' type='file' />
-              {errors.image && touched.image
-                ? (
-                  <div>{errors.image}</div>
-                  )
-                : null}
+              {
+                errors.image && touched.image
+                  ? (<div>{errors.image}</div>)
+                  : null
+              }
               <button type='submit'>Submit</button>
             </Form>
           )
