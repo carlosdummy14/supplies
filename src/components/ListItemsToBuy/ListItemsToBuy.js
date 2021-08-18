@@ -1,18 +1,13 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
+import { INC_DEC } from '../../utils/constant'
 import { decrementItem, deleteItemToBuy, incrementItem } from '../../reducers/buyReducer'
 import ItemToBuy from '../ItemToBuy'
 import './ListItemsToBuy.css'
 
-const INC_DEC = {
-  INCREMENT: 'increment',
-  DECREMENT: 'decrement'
-}
-
-const ListItemsToBuy = ({ isConfirm = false }) => {
+const ListItemsToBuy = ({ isConfirm = false, items = [] }) => {
   const dispatch = useDispatch()
-  const items = useSelector(({ buy }) => buy)
 
   const handleDeleteItem = (item) => {
     dispatch(deleteItemToBuy(item))
@@ -23,13 +18,13 @@ const ListItemsToBuy = ({ isConfirm = false }) => {
     incDec === INC_DEC.DECREMENT && dispatch(decrementItem(item))
   }
 
+  const haveItems = items.length > 0
+
   return (
     <div>
       {
-        items.length === 0
-          ? (
-            <div>Empty !!</div>
-            )
+        !haveItems
+          ? <div>Empty !!</div>
           : (
               items.map((item) => {
                 return (
