@@ -20,11 +20,18 @@ const ShoppingCar = () => {
   }
 
   const notEnoughStock = () => {
-    return (car.find(carItem => {
-      const { item: { id: carItemId }, qty: carItemQty } = carItem
+    return (
+      car.find((carItem) => {
+        const {
+          item: { id: carItemId },
+          qty: carItemQty
+        } = carItem
 
-      return items.find(item => item.id === carItemId && carItemQty > item.stock)
-    }) || false)
+        return items.find(
+          (item) => item.id === carItemId && carItemQty > item.stock
+        )
+      }) || false
+    )
   }
 
   return (
@@ -34,10 +41,14 @@ const ShoppingCar = () => {
       {car.length > 0
         ? (
             !isConfirm
-              ? <Button handleClick={() => setIsConfirm(true)} text='Take items' />
+              ? (
+                <Button handleClick={() => setIsConfirm(true)} text='Take items' />
+                )
               : (
                 <>
-                  {!notEnoughStock() && <Button handleClick={handleConfirm} text='Confirm' />}
+                  {!notEnoughStock() && (
+                    <Button handleClick={handleConfirm} text='Confirm' />
+                  )}
                   <Button handleClick={() => setIsConfirm(false)} text='Cancel' />
                 </>
                 )

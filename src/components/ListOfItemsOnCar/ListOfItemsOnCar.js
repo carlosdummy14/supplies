@@ -1,14 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { INC_DEC } from '../../utils/constant'
 import { deleteItemCarAction, incrementItem, decrementItem } from '../../reducers/carReducer'
 import ItemOnCar from '../ItemOnCar'
 import './ListOfItemsOnCar.css'
-
-const INC_DEC = {
-  INCREMENT: 'increment',
-  DECREMENT: 'decrement'
-}
 
 const ListOfItemsOnCar = ({ isConfirm }) => {
   const dispatch = useDispatch()

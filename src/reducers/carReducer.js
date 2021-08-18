@@ -61,7 +61,6 @@ export const carReducer = (state = [], action) => {
         if (item.item.id === action.payload.id) {
           return {
             ...item,
-            // incDec === INC_DEC.DECREMENT && setQuantity(quantity => { return Number(quantity) - 1 < 0 ? 0 : Number(quantity) - 1 })
             qty: item.qty - 1 < 1 ? 1 : item.qty - 1
           }
         }
