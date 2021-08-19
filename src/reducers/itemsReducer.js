@@ -21,25 +21,54 @@ export const itemsReducer = (state = [], action) => {
 
     case ACTIONS_ITEMS.UPDATE_ITEMS:
     {
-      const itemsToUpdate = action.payload.map((item) => {
-        return {
-          id: item.item.id,
-          qty: item.qty
-        }
-      })
+      const typeOfTransaction = action.payload.transaction
+      let itemsToUpdate = []
 
-      const newState = state.map((item) => {
-        const isUpdated = itemsToUpdate.filter(itemToUpdate => itemToUpdate.id === item.id)
-
-        if (isUpdated.length !== 0) {
+      if (typeOfTransaction === 'sell') {
+        itemsToUpdate = action.payload.items.map((item) => {
           return {
-            ...item,
-            stock: item.stock - isUpdated[0].qty
+            id: item.item.id,
+            qty: item.qty
           }
-        }
+        })
+      } else if (typeOfTransaction === 'buy') {
+        itemsToUpdate = action.payload.items.map((item) => {
+          return {
+            name: item.name,
+            qty: item.qty
+          }
+        })
+      }
 
-        return item
-      })
+      let newState = []
+
+      if (typeOfTransaction === 'sell') {
+        newState = state.map((item) => {
+          const isUpdated = itemsToUpdate.filter(itemToUpdate => itemToUpdate.id === item.id)
+
+          if (isUpdated.length !== 0) {
+            return {
+              ...item,
+              stock: item.stock - isUpdated[0].qty
+            }
+          }
+
+          return item
+        })
+      } else if (typeOfTransaction === 'buy') {
+        newState = state.map((item) => {
+          const isUpdated = itemsToUpdate.filter(itemToUpdate => itemToUpdate.name === item.name)
+
+          if (isUpdated.length !== 0) {
+            return {
+              ...item,
+              stock: item.stock + isUpdated[0].qty
+            }
+          }
+
+          return item
+        })
+      }
 
       return newState
     }
@@ -63,9 +92,12 @@ export const addItem = (item) => {
   }
 }
 
-export const updateStock = (items) => {
+export const updateStock = (items, transaction) => {
   return {
     type: ACTIONS_ITEMS.UPDATE_ITEMS,
-    payload: items
+    payload: {
+      items,
+      transaction
+    }
   }
 }

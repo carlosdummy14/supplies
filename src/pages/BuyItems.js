@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import ListItemsToBuy from '../components/ListItemsToBuy'
 import Button from '../components/Button'
 import FormBuy from '../components/FormBuy/FormBuy'
+import { updateStock } from '../reducers/itemsReducer'
+import { emptyBuy } from '../reducers/buyReducer'
 
 const BuyItems = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const { items, buy } = useSelector(({ items, buy }) => ({
     items: items.map((item) => item.name),
     buy
@@ -13,7 +18,9 @@ const BuyItems = () => {
   const [isConfirm, setIsConfirm] = useState(false)
 
   const handleConfirm = () => {
-    console.log('confirm!!!!')
+    dispatch(updateStock(buy, 'buy'))
+    dispatch(emptyBuy())
+    history.push('/')
   }
 
   return (
