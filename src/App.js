@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css'
 import ListOfItems from './components/ListOfItems'
 import Navbar from './components/Navbar'
-import ShoppingCar from './components/ShoppingCar'
+import ShoppingCart from './components/ShoppingCart'
 import AddItem from './pages/AddItem'
 import useGetAllItems from './hooks/useGetAllItems'
 import BuyItems from './pages/BuyItems'
@@ -18,7 +18,7 @@ const App = () => {
       <div className='App'>
         <Switch>
           <Route exact component={ListOfItems} path='/' />
-          <Route component={ShoppingCar} path='/shoppingcar' />
+          <Route component={ShoppingCart} path='/shoppingcar' />
           <Route component={AddItem} path='/add-item' />
           <Route component={BuyItems} path='/buy-items' />
           <Route path='/:id'>

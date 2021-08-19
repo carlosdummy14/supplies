@@ -31,14 +31,15 @@ Launches a json-server with the information of db.json file.\
   - **DONE** Form definition, for various items in one purchase
   - **DONE** Form validation 
   - **DONE** List of items to buy
-  - Confirm purchase
+  - **DONE** Confirm purchase
   - Update items quantities
 
-#### Shopping car
+#### Shopping cart
 
-- **DONE** Checking car
+- **DONE** Checking cart
 - **DONE** Validate stock vs available quantity 
-- Save state of car in local session
+- Refacto cart store to use name of item instead id
+- Save state of cart in local session
 
 #### Next
 - Add quantity to items

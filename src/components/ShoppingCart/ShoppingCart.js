@@ -2,33 +2,33 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { emptyCar } from '../../reducers/carReducer'
+import { emptyCart } from '../../reducers/cartReducer'
 import { updateStock } from '../../reducers/itemsReducer'
 import Button from '../Button'
-import ListOfItemsOnCar from '../ListOfItemsOnCar'
+import ListOfItemsOnCart from '../ListOfItemsOnCart'
 
-const ShoppingCar = () => {
+const ShoppingCart = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const { items, car } = useSelector(({ items, car }) => ({ items, car }))
+  const { items, cart } = useSelector(({ items, cart }) => ({ items, cart }))
   const [isConfirm, setIsConfirm] = useState(false)
 
   const handleConfirm = () => {
-    dispatch(updateStock(car))
-    dispatch(emptyCar())
+    dispatch(updateStock(cart, 'sell'))
+    dispatch(emptyCart())
     history.push('/')
   }
 
-  const notEnoughStock = () => {
+  const haveItemsOutOfStock = () => {
     return (
-      car.find((carItem) => {
+      cart.find((cartItem) => {
         const {
-          item: { id: carItemId },
-          qty: carItemQty
-        } = carItem
+          item: { id: cartItemId },
+          qty: cartItemQty
+        } = cartItem
 
         return items.find(
-          (item) => item.id === carItemId && carItemQty > item.stock
+          (item) => item.id === cartItemId && cartItemQty > item.stock
         )
       }) || false
     )
@@ -37,16 +37,14 @@ const ShoppingCar = () => {
   return (
     <>
       <h3>Supplies to take</h3>
-      <ListOfItemsOnCar isConfirm={isConfirm} />
-      {car.length > 0
+      <ListOfItemsOnCart haveItemsOutOfStock={haveItemsOutOfStock} isConfirm={isConfirm} />
+      {cart.length > 0
         ? (
             !isConfirm
-              ? (
-                <Button handleClick={() => setIsConfirm(true)} text='Take items' />
-                )
+              ? <Button handleClick={() => setIsConfirm(true)} text='Take items' />
               : (
                 <>
-                  {!notEnoughStock() && (
+                  {!haveItemsOutOfStock() && (
                     <Button handleClick={handleConfirm} text='Confirm' />
                   )}
                   <Button handleClick={() => setIsConfirm(false)} text='Cancel' />
@@ -58,4 +56,4 @@ const ShoppingCar = () => {
   )
 }
 
-export default ShoppingCar
+export default ShoppingCart

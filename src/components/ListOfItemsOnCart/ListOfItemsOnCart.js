@@ -2,13 +2,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { INC_DEC } from '../../utils/constant'
-import { deleteItemCarAction, incrementItem, decrementItem } from '../../reducers/carReducer'
-import ItemOnCar from '../ItemOnCar'
-import './ListOfItemsOnCar.css'
+import { deleteItemCarAction, incrementItem, decrementItem } from '../../reducers/cartReducer'
+import ItemOnCart from '../ItemOnCart'
+import './ListOfItemsOnCart.css'
 
-const ListOfItemsOnCar = ({ isConfirm }) => {
+const ListOfItemsOnCart = ({ isConfirm, haveItemsOutOfStock }) => {
   const dispatch = useDispatch()
-  const items = useSelector(({ car }) => car)
+  const items = useSelector(({ cart }) => cart)
 
   const handleDeleteItem = (item) => {
     dispatch(deleteItemCarAction(item))
@@ -20,18 +20,18 @@ const ListOfItemsOnCar = ({ isConfirm }) => {
   }
 
   return (
-    <div className='ListOfItemsOnCar'>
+    <div className='ListOfItemsOnCart'>
       {items.length === 0
         ? (
-          <div>Empty car!!</div>
+          <div>Empty cart!!</div>
           )
         : (
             items.map((item) => (
-              <ItemOnCar key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} incDec={INC_DEC} isConfirm={isConfirm} item={item} />
+              <ItemOnCart key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} haveItemsOutOfStock={haveItemsOutOfStock} incDec={INC_DEC} isConfirm={isConfirm} item={item} />
             ))
           )}
     </div>
   )
 }
 
-export default ListOfItemsOnCar
+export default ListOfItemsOnCart

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addItemCarAction } from '../../reducers/carReducer'
+import { addItemCarAction } from '../../reducers/cartReducer'
+import { setFilterAction } from '../../reducers/filterReducer'
 import Item from '../Item'
 import Search from '../Search/Search'
 import './ListOfItems.css'
@@ -21,6 +22,10 @@ const ListOfItems = () => {
   const handleClick = (item) => {
     dispatch(addItemCarAction(item))
   }
+
+  useEffect(() => {
+    dispatch(setFilterAction(''))
+  }, [])
 
   return (
     <>

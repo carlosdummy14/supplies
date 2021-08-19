@@ -1,26 +1,26 @@
-const ACTIONS_CAR = {
-  ADD_ITEM: '@car/add_item',
-  DELETE_ITEM: '@car/delete_item',
-  EMPTY_CAR: '@car/empty_car',
-  INC_ITEM: '@car/inc_item',
-  DEC_ITEM: '@car/dec_item'
+const ACTIONS_CART = {
+  ADD_ITEM: '@cart/add_item',
+  DELETE_ITEM: '@cart/delete_item',
+  EMPTY_CART: '@cart/empty_car',
+  INC_ITEM: '@cart/inc_item',
+  DEC_ITEM: '@cart/dec_item'
 }
 
-export const carReducer = (state = [], action) => {
+export const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case ACTIONS_CAR.ADD_ITEM: {
-      const isItemInCar = state.find((item) => item.item.id === action.payload.id)
-      let newCar = []
+    case ACTIONS_CART.ADD_ITEM: {
+      const isItemInCart = state.find((item) => item.item.id === action.payload.id)
+      let newCart = []
 
-      if (!isItemInCar) {
+      if (!isItemInCart) {
         const newItem = {
           item: action.payload,
           qty: 1
         }
 
-        newCar = [...state, newItem]
+        newCart = [...state, newItem]
       } else {
-        newCar = state.map((item) => {
+        newCart = state.map((item) => {
           if (item.item.id === action.payload.id) {
             return {
               ...item,
@@ -32,18 +32,18 @@ export const carReducer = (state = [], action) => {
         })
       }
 
-      return newCar
+      return newCart
     }
 
-    case ACTIONS_CAR.DELETE_ITEM: {
+    case ACTIONS_CART.DELETE_ITEM: {
       return state.filter((item) => item.item.id !== action.payload.id)
     }
 
-    case ACTIONS_CAR.EMPTY_CAR: {
+    case ACTIONS_CART.EMPTY_CART: {
       return []
     }
 
-    case ACTIONS_CAR.INC_ITEM: {
+    case ACTIONS_CART.INC_ITEM: {
       return state.map((item) => {
         if (item.item.id === action.payload.id) {
           return {
@@ -56,7 +56,7 @@ export const carReducer = (state = [], action) => {
       })
     }
 
-    case ACTIONS_CAR.DEC_ITEM: {
+    case ACTIONS_CART.DEC_ITEM: {
       return state.map((item) => {
         if (item.item.id === action.payload.id) {
           return {
@@ -76,34 +76,34 @@ export const carReducer = (state = [], action) => {
 
 export const addItemCarAction = (item) => {
   return {
-    type: ACTIONS_CAR.ADD_ITEM,
+    type: ACTIONS_CART.ADD_ITEM,
     payload: item
   }
 }
 
 export const deleteItemCarAction = (item) => {
   return {
-    type: ACTIONS_CAR.DELETE_ITEM,
+    type: ACTIONS_CART.DELETE_ITEM,
     payload: item
   }
 }
 
 export const incrementItem = (item) => {
   return {
-    type: ACTIONS_CAR.INC_ITEM,
+    type: ACTIONS_CART.INC_ITEM,
     payload: item
   }
 }
 
 export const decrementItem = (item) => {
   return {
-    type: ACTIONS_CAR.DEC_ITEM,
+    type: ACTIONS_CART.DEC_ITEM,
     payload: item
   }
 }
 
-export const emptyCar = () => {
+export const emptyCart = () => {
   return {
-    type: ACTIONS_CAR.EMPTY_CAR
+    type: ACTIONS_CART.EMPTY_CART
   }
 }

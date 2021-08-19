@@ -1,13 +1,13 @@
 import React from 'react'
 
-import './ItemOnCar.css'
+import './ItemOnCart.css'
 import Button from '../Button'
 
-const ItemOnCar = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm }) => {
+const ItemOnCart = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm, haveItemsOutOfStock }) => {
   const { item: { img, name, description, stock }, qty } = item
 
   return (
-    <div className='ItemOnCar'>
+    <div className='ItemOnCart'>
       <img alt={name} src={img} />
 
       <div>
@@ -21,9 +21,9 @@ const ItemOnCar = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm }) 
         {isConfirm ? null : <Button handleClick={() => handleIncDec(item.item, incDec.INCREMENT)} text='+' />}
       </div>
       {isConfirm ? null : <Button handleClick={() => handleDeleteItem(item.item)} text='X' />}
-      {isConfirm && (qty > stock) ? <span style={{ color: 'red' }}>Not enough stock for this item</span> : null}
+      {isConfirm && haveItemsOutOfStock() ? <span style={{ color: 'red' }}>Not enough stock for this item</span> : null}
     </div>
   )
 }
 
-export default ItemOnCar
+export default ItemOnCart
