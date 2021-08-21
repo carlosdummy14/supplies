@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setFilterAction } from '../../reducers/filterReducer'
+import './Search.css'
 
 const Search = () => {
   const dispatch = useDispatch()
@@ -16,14 +17,13 @@ const Search = () => {
 
   return (
     <div className='Search'>
-      <div>
-        <input
-          placeholder='Item a buscar...'
-          type='text'
-          value={searchValue}
-          onChange={handleChange}
-        />
-      </div>
+      <input
+        className='Search__input'
+        placeholder='Item to search...'
+        type='text'
+        value={searchValue}
+        onChange={handleChange}
+      />
     </div>
   )
 }

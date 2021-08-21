@@ -16,7 +16,7 @@
       "stock": 5,
       "available": true,
       "createdAt": "2021-04-09T22:51:55.756Z",
-      "img": "image-uri"
+      "img": "https://http2.mlstatic.com/D_NQ_NP_644363-MLM43002969778_082020-O.webp"
     },
     {
       "id": 3,
@@ -25,34 +25,34 @@
       "stock": 15,
       "available": true,
       "createdAt": "2021-04-09T22:51:55.756Z",
-      "img": "image-uri"
+      "img": "https://officemax.vteximg.com.br/arquivos/ids/188631-350-350/61230_99.jpg?v=636947578232500000"
     },
     {
       "id": 4,
       "name": "HP 6100 932XL NEGRO",
       "description": "Cartucho negro para impresora de inyeccion de tinta hp 440",
-      "stock": 15,
+      "stock": 8,
       "available": true,
       "createdAt": "2021-04-09T22:51:55.756Z",
-      "img": "image-uri"
+      "img": "https://http2.mlstatic.com/D_NQ_NP_644363-MLM43002969778_082020-O.webp"
     },
     {
       "id": 5,
       "name": "CINTA FX-890",
       "description": "Cartucho negro para impresora de inyeccion de tinta hp 440",
-      "stock": 15,
+      "stock": 6,
       "available": true,
       "createdAt": "2021-04-09T22:51:55.756Z",
-      "img": "image-uri"
+      "img": "https://http2.mlstatic.com/D_NQ_NP_740369-MLM42240990383_062020-O.webp"
     },
     {
       "id": 6,
       "name": "TONER ML-D111S",
       "description": "Cartucho negro para impresora de inyeccion de tinta hp 440",
-      "stock": 15,
+      "stock": 12,
       "available": true,
       "createdAt": "2021-04-09T22:51:55.756Z",
-      "img": "image-uri"
+      "img": "https://http2.mlstatic.com/D_NQ_NP_644363-MLM43002969778_082020-O.webp"
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "stock": 7,
       "available": true,
       "createdAt": "2021-04-09T22:51:55.756Z",
-      "img": "image-uri"
+      "img": "https://http2.mlstatic.com/D_NQ_NP_644363-MLM43002969778_082020-O.webp"
     }
   ]
 }

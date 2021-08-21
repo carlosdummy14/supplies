@@ -8,15 +8,15 @@ const Item = ({ item, handleClick, canBuy }) => {
 
   return (
     <div className='Item'>
-      <div className='container'>
-        <img alt={name} src={img} />
+      <div className='Item-image__container'>
+        <img alt={name} className='Item-image__image' src={img} />
       </div>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <p>{stock}</p>
+      <h3 className='Item__name'>{name}</h3>
+      <p className='Item__description'>{description}</p>
+      <p className='Item__stock'>{stock}</p>
       {
         canBuy
-          ? <Button handleClick={() => handleClick(item)} text='Agregar' />
+          ? <Button className='Button' handleClick={() => handleClick(item)} text='Add to Cart' />
           : null
       }
     </div>

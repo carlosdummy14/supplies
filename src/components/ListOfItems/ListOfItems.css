@@ -1,7 +1,11 @@
 .ListOfItems {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 4fr));
   gap: 10px;
   justify-items: center;
   align-items: center;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
 }

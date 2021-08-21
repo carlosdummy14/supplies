@@ -20,7 +20,7 @@ Launches a json-server with the information of db.json file.\
 
 ## TO DO
 
-- FULL CSS --- jeje
+- A lot of CSS 
 
 #### Items 
 
@@ -32,7 +32,8 @@ Launches a json-server with the information of db.json file.\
   - **DONE** Form validation 
   - **DONE** List of items to buy
   - **DONE** Confirm purchase
-  - Update items quantities
+  - **DONE** Update items quantities
+- Add quantity to items
 
 #### Shopping cart
 
@@ -42,10 +43,14 @@ Launches a json-server with the information of db.json file.\
 - Save state of cart in local session
 
 #### Next
-- Add quantity to items
 - Items Logs, input and output transactions
 - Inventory reports to PDF format
 - Refacto Item components, use only one
 - Refacto INC-DEC items
 - Unify Yup validation schemas
   
+#### Fix
+- Stiky buttons on cart when is empty
+- Not enougth items for all items in cart
+
+Thanks https://iconos8.es/ for some beautiful assets

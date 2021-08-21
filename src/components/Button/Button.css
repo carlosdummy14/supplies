@@ -1,0 +1,74 @@
+.button {
+  padding: 0.8em 1.2em;
+  background-color: rgb(139, 231, 155);
+  border: 1px solid rgb(139, 231, 155);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: rgb(51, 221, 79);
+  border-color: rgb(51, 221, 79);
+}
+
+.button:focus-visible {
+  outline-style: inset;
+}
+
+.button-small {
+  width: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 20px;
+  padding: 0.8em 3.2em;
+}
+
+@media screen and (max-width: 768px) {
+  .button-small {
+    width: 100%;
+  }
+}
+
+.button--inc,
+.button--dec,
+.button--delete {
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+.button--inc {
+  background-image: url('./icons8-añadir-50.png');
+}
+
+.button--dec {
+  background-image: url('./icons8-menos-50.png');
+}
+
+.button--dec:hover,
+.button--delete:hover {
+  background-color: tomato;
+}
+
+.button--delete {
+  background-image: url('./icons8-cancelar-50.png');
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .button--delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 5px;
+  }
+}

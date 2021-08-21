@@ -6,6 +6,7 @@ import { emptyCart } from '../../reducers/cartReducer'
 import { updateStock } from '../../reducers/itemsReducer'
 import Button from '../Button'
 import ListOfItemsOnCart from '../ListOfItemsOnCart'
+import './ShoppingCart.css'
 
 const ShoppingCart = () => {
   const history = useHistory()
@@ -36,22 +37,24 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <h3>Supplies to take</h3>
+      <h1>Supplies to take</h1>
       <ListOfItemsOnCart haveItemsOutOfStock={haveItemsOutOfStock} isConfirm={isConfirm} />
-      {cart.length > 0
-        ? (
-            !isConfirm
-              ? <Button handleClick={() => setIsConfirm(true)} text='Take items' />
-              : (
-                <>
-                  {!haveItemsOutOfStock() && (
-                    <Button handleClick={handleConfirm} text='Confirm' />
-                  )}
-                  <Button handleClick={() => setIsConfirm(false)} text='Cancel' />
-                </>
-                )
-          )
-        : null}
+      <div className='Shopping-buttons'>
+        {cart.length > 0
+          ? (
+              !isConfirm
+                ? <Button handleClick={() => setIsConfirm(true)} style='button-small ' text='Take items' />
+                : (
+                  <>
+                    {!haveItemsOutOfStock() && (
+                      <Button handleClick={handleConfirm} style='button-small ' text='Confirm' />
+                    )}
+                    <Button handleClick={() => setIsConfirm(false)} style='button-small ' text='Cancel' />
+                  </>
+                  )
+            )
+          : null}
+      </div>
     </>
   )
 }

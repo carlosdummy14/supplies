@@ -1,0 +1,14 @@
+.Shopping-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .Shopping-buttons {
+    position: sticky;
+    bottom: 0;
+    background-color: rgba(255, 099, 071, 0.9);
+    padding: 0.5em 0.5em;
+    border-radius: 10px 10px 0 0;
+  }
+}
