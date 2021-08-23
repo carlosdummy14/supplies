@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { emptyCart } from '../../reducers/cartReducer'
+import { emptyCart, setOutOfStock } from '../../reducers/cartReducer'
 import { updateStock } from '../../reducers/itemsReducer'
+import checkItemsOutOfStock from '../../utils/checkItemsOutOfStock'
 import Button from '../Button'
 import ListOfItemsOnCart from '../ListOfItemsOnCart'
 import './ShoppingCart.css'
@@ -13,6 +14,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch()
   const { items, cart } = useSelector(({ items, cart }) => ({ items, cart }))
   const [isConfirm, setIsConfirm] = useState(false)
+  const [haveItemsOutOfStock, setHaveItemsOutOfStock] = useState(false)
 
   const handleConfirm = () => {
     dispatch(updateStock(cart, 'sell'))
@@ -20,33 +22,27 @@ const ShoppingCart = () => {
     history.push('/')
   }
 
-  const haveItemsOutOfStock = () => {
-    return (
-      cart.find((cartItem) => {
-        const {
-          item: { id: cartItemId },
-          qty: cartItemQty
-        } = cartItem
+  const handleTakeItems = () => {
+    const itemsOutOfStock = checkItemsOutOfStock(items, cart)
 
-        return items.find(
-          (item) => item.id === cartItemId && cartItemQty > item.stock
-        )
-      }) || false
-    )
+    dispatch(setOutOfStock(itemsOutOfStock))
+
+    setHaveItemsOutOfStock(itemsOutOfStock.length > 0)
+    setIsConfirm(true)
   }
 
   return (
     <>
       <h1>Supplies to take</h1>
-      <ListOfItemsOnCart haveItemsOutOfStock={haveItemsOutOfStock} isConfirm={isConfirm} />
+      <ListOfItemsOnCart isConfirm={isConfirm} />
       <div className='Shopping-buttons'>
         {cart.length > 0
           ? (
               !isConfirm
-                ? <Button handleClick={() => setIsConfirm(true)} style='button-small ' text='Take items' />
+                ? <Button handleClick={handleTakeItems} style='button-small ' text='Take items' />
                 : (
                   <>
-                    {!haveItemsOutOfStock() && (
+                    {!haveItemsOutOfStock && (
                       <Button handleClick={handleConfirm} style='button-small ' text='Confirm' />
                     )}
                     <Button handleClick={() => setIsConfirm(false)} style='button-small ' text='Cancel' />

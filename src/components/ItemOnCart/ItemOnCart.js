@@ -3,8 +3,8 @@ import React from 'react'
 import './ItemOnCart.css'
 import Button from '../Button'
 
-const ItemOnCart = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm, haveItemsOutOfStock }) => {
-  const { item: { img, name, description }, qty } = item
+const ItemOnCart = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm }) => {
+  const { item: { img, name, description }, qty, outOfStock } = item
 
   return (
     <div className='ItemOnCart'>
@@ -23,7 +23,7 @@ const ItemOnCart = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm, h
         {isConfirm ? null : <Button handleClick={() => handleIncDec(item.item, incDec.INCREMENT)} style='button--inc ' text='' />}
       </div>
       {isConfirm ? null : <Button handleClick={() => handleDeleteItem(item.item)} style='button--delete ' text='' />}
-      {isConfirm && haveItemsOutOfStock() ? <span style={{ color: 'red' }}>Not enough stock for this item</span> : null}
+      {isConfirm && outOfStock ? <span style={{ color: 'red' }}>Not enough stock for this item</span> : null}
     </div>
   )
 }

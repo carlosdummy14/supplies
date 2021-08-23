@@ -6,7 +6,7 @@ import { deleteItemCarAction, incrementItem, decrementItem } from '../../reducer
 import ItemOnCart from '../ItemOnCart'
 import './ListOfItemsOnCart.css'
 
-const ListOfItemsOnCart = ({ isConfirm, haveItemsOutOfStock }) => {
+const ListOfItemsOnCart = ({ isConfirm }) => {
   const dispatch = useDispatch()
   const items = useSelector(({ cart }) => cart)
 
@@ -27,7 +27,7 @@ const ListOfItemsOnCart = ({ isConfirm, haveItemsOutOfStock }) => {
           )
         : (
             items.map((item) => (
-              <ItemOnCart key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} haveItemsOutOfStock={haveItemsOutOfStock} incDec={INC_DEC} isConfirm={isConfirm} item={item} />
+              <ItemOnCart key={item.item.id} handleDeleteItem={handleDeleteItem} handleIncDec={handleIncDec} incDec={INC_DEC} isConfirm={isConfirm} item={item} />
             ))
           )}
     </div>
