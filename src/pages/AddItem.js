@@ -66,7 +66,7 @@ const AddItem = () => {
 
   return (
     <>
-      <h1>Add new Item</h1>
+      <h1 className='app-titles'>Add new Item</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={AddItemSchema(items)}

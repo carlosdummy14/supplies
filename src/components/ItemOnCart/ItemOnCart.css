@@ -1,6 +1,5 @@
 .ItemOnCart {
   border: 1px solid black;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,11 +1,17 @@
 .Navbar {
+  position: fixed;
+  height: 50px;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
   background-color: tomato;
+  z-index: 10;
 }
 
-.ShoppingCart a{
- text-decoration: none;
+.ShoppingCart a {
+  text-decoration: none;
 }

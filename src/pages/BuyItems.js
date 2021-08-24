@@ -25,7 +25,7 @@ const BuyItems = () => {
 
   return (
     <>
-      <h1>Buy Items</h1>
+      <h1 className='app-titles'>Buy Items</h1>
       {
         !isConfirm
           ? <FormBuy buy={buy} items={items} setIsConfirm={setIsConfirm} />

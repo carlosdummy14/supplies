@@ -1,11 +1,14 @@
 .Shopping-buttons {
   display: flex;
   justify-content: center;
+  min-width: 375px;
 }
 
 @media screen and (max-width: 768px) {
   .Shopping-buttons {
-    position: sticky;
+    position: fixed;
+    right: 0;
+    left: 0;
     bottom: 0;
     background-color: rgba(255, 099, 071, 0.9);
     padding: 0.5em 0.5em;

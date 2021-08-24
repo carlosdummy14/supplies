@@ -33,7 +33,7 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <h1>Supplies to take</h1>
+      <h1 className='app-titles'>Supplies to take</h1>
       <ListOfItemsOnCart isConfirm={isConfirm} />
       <div className='Shopping-buttons'>
         {cart.length > 0
