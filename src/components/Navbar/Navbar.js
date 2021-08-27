@@ -16,21 +16,19 @@ const Navbar = () => {
 
   return (
     <div className='Navbar'>
-      <Link to='/'>
-        <h2>Supplies</h2>
+      <Link className='Navbar-logo link' to='/'>
+        Supplies
       </Link>
-      <Link to='/add-item'>
+      <Link className='link' to='/add-item'>
         Add New Item
       </Link>
-      <Link to='/buy-items'>
+      <Link className='link' to='/buy-items'>
         Buy Items
       </Link>
-      <div className='ShoppingCart'>
-        <Link to='/shoppingcar'>
-          <div>Cart</div>
-        </Link>
-        <div> {totalItems()}</div>
-      </div>
+      <Link className='ShoppingCart link' to='/shoppingcar'>
+        <div className='ShoppingCart-text'> {totalItems()}</div>
+        <div className='ShoppingCart-icon' />
+      </Link>
     </div>
   )
 }

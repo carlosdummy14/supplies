@@ -12,6 +12,38 @@
   z-index: 10;
 }
 
-.ShoppingCart a {
+@media screen and (max-width: 768px) {
+  .Navbar {
+    border-radius: 0 0 10px 10px;
+  }
+}
+
+.link {
   text-decoration: none;
+  color: rgb(216, 230, 218);
+}
+
+.Navbar-logo {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.ShoppingCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 47px;
+  height: 47px;
+}
+.ShoppingCart-icon {
+  background-image: url('./icons8-shopping-cart-64.png');
+  background-size: cover;
+  width: 50%;
+  height: 50%;
+}
+
+.ShoppingCart-text {
+  color: rgb(216, 230, 218);
+  width: 50%;
+  text-align: end;
 }
