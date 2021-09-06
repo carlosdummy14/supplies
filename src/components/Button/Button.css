@@ -30,6 +30,10 @@
   .button-small {
     width: 100%;
   }
+
+  .button-small--nopadding {
+    padding: inherit;
+  }
 }
 
 .button--inc,

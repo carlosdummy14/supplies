@@ -4,24 +4,25 @@ import './ItemToBuy.css'
 import Button from '../Button'
 
 const ItemToBuy = ({ item, incDec, handleDeleteItem, handleIncDec, isConfirm }) => {
-  const { img, name, description, stock, qty = 0 } = item
+  const { img, name, description, qty = 0 } = item
 
   return (
     <div className='ItemToBuy'>
-      <img alt={name} src={img} />
-
-      <div>
-        <h3>{name}</h3>
-        <p>{description}</p>
+      <div className='ItemToBuy__container'>
+        <img alt={name} className='ItemToBuy__image' src={img} />
       </div>
 
-      <div className='quantity-container'>
-        {isConfirm ? null : <Button handleClick={() => handleIncDec(item, incDec.DECREMENT)} text='-' />}
-        <span className='quantity'>{qty}</span>
-        {isConfirm ? null : <Button handleClick={() => handleIncDec(item, incDec.INCREMENT)} text='+' />}
+      <div className='ItemToBuy__text'>
+        <h3 className='ItemToBuy__title'>{name}</h3>
+        <p className='ItemToBuy__description'>{description}</p>
       </div>
-      {isConfirm ? null : <Button handleClick={() => handleDeleteItem(item)} text='X' />}
-      {isConfirm && (qty > stock) ? <span style={{ color: 'red' }}>Not enough stock for this item</span> : null}
+
+      <div className='ItemToBuy__quantityContainer'>
+        {isConfirm ? null : <Button handleClick={() => handleIncDec(item, incDec.DECREMENT)} style='button button--dec' text='' />}
+        <span className='ItemToBuy__quantity'>{qty}</span>
+        {isConfirm ? null : <Button handleClick={() => handleIncDec(item, incDec.INCREMENT)} style='button button--inc' text='' />}
+      </div>
+      {isConfirm ? null : <Button handleClick={() => handleDeleteItem(item)} style='button button--delete' text='' />}
     </div>
   )
 }

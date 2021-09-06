@@ -33,14 +33,14 @@ Launches a json-server with the information of db.json file.\
   - **DONE** List of items to buy
   - **DONE** Confirm purchase
   - **DONE** Update items quantities
-- Add quantity to items
+  - Add image and description in Buy Items
 
 #### Shopping cart
 
 - **DONE** Checking cart
 - **DONE** Validate stock vs available quantity 
-- Refacto cart store to use name of item instead id
-- Save state of cart in local session
+- **DONE** Stiky buttons on cart when is empty
+- **DONE** Not enougth items for all items in cart
 
 #### Next
 - Items Logs, input and output transactions
@@ -48,9 +48,11 @@ Launches a json-server with the information of db.json file.\
 - Refacto Item components, use only one
 - Refacto INC-DEC items
 - Unify Yup validation schemas
+- Refacto cart store to use name of item instead id
+- Save state of cart in local session
   
 #### Fix
-- Stiky buttons on cart when is empty
-- Not enougth items for all items in cart
+
+
 
 Thanks https://iconos8.es/ for some beautiful assets

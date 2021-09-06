@@ -16,7 +16,7 @@ const initialValues = {
 const BuyItemsSchema = (items = []) => {
   return Yup.object().shape({
     name: Yup.string().oneOf(items, 'Item not valid').required('Required'),
-    quantity: Yup.number().positive().integer().max(99).required('Required')
+    quantity: Yup.number().positive('Wrong quantity').integer('Wrong quantity').max(99, 'Maximun 99').required('Required')
   })
 }
 
@@ -48,36 +48,42 @@ const FormBuy = ({ items, buy, setIsConfirm }) => {
     >
       {({ errors, touched }) => (
         <Form className='form'>
+          <div className='form__inputs'>
 
-          <label htmlFor='name'>Name</label>
-          <div className='form__field'>
-            <Field autoFocus='autofocus' list='nameList' name='name' />
-            <datalist id='nameList'>
-              {items.map((item) => (
-                <option key={`${item}`} value={`${item}`} />
-              ))}
-            </datalist>
-            {errors.name && touched.name
-              ? <span>{errors.name}</span>
-              : null}
-          </div>
+            <div className='input-group'>
+              <label className='form-label' htmlFor='name'>Name</label>
+              <div className='form__field'>
+                <Field autoFocus='autofocus' className='input input--lg' list='nameList' name='name' />
+                <datalist id='nameList'>
+                  {items.map((item) => (
+                    <option key={`${item}`} value={`${item}`} />
+                  ))}
+                </datalist>
+                {errors.name && touched.name
+                  ? <span className='error'>{errors.name}</span>
+                  : <span className='error' />}
+              </div>
+            </div>
 
-          <label htmlFor='quantity'>Quantity</label>
-          <div className='form__field'>
-            <Field name='quantity' type='number' />
-            {errors.quantity && touched.quantity
-              ? <span>{errors.quantity}</span>
-              : null}
+            <div className='input-group'>
+              <label className='form-label' htmlFor='quantity'>Quantity</label>
+              <div className='form__field'>
+                <Field className='input' name='quantity' type='number' />
+                {errors.quantity && touched.quantity
+                  ? <span className='error'>{errors.quantity}</span>
+                  : <span className='error' />}
+              </div>
+            </div>
           </div>
 
           <div className={'form__buttons'.concat(haveItemsToBuy ? ' tree-buttons' : '')}>
-            <button type='submit'>Submit</button>
+            <button className='button button-small button-small--nopadding' type='submit'>Submit</button>
             {
               haveItemsToBuy
                 ? (
                   <>
-                    <Button handleClick={handleClear} text='Clear Buy' type='button' />
-                    <Button handleClick={() => setIsConfirm(true)} text='Buy' />
+                    <Button handleClick={handleClear} style='button-small button-small--nopadding' text='Clear Buy' type='button' />
+                    <Button handleClick={() => setIsConfirm(true)} style='button-small button-small--nopadding' text='Buy' />
                   </>
                   )
                 : null

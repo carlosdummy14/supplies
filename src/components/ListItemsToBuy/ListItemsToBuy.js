@@ -21,7 +21,7 @@ const ListItemsToBuy = ({ isConfirm = false, items = [] }) => {
   const haveItems = items.length > 0
 
   return (
-    <div>
+    <div className='ListItemsToBuy'>
       {
         !haveItems
           ? <div>Empty !!</div>

@@ -31,8 +31,10 @@ const BuyItems = () => {
           ? <FormBuy buy={buy} items={items} setIsConfirm={setIsConfirm} />
           : (
             <>
-              <Button handleClick={handleConfirm} text='Confirm' />
-              <Button handleClick={() => setIsConfirm(false)} text='Cancel' />
+            <div className='Shopping-buttons'>
+              <Button handleClick={handleConfirm} style='button-small' text='Confirm'/>
+              <Button handleClick={() => setIsConfirm(false)}style='button-small' text='Cancel' />
+            </div>
             </>
             )
       }
