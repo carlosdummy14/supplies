@@ -41,6 +41,8 @@ Launches a json-server with the information of db.json file.\
 - **DONE** Validate stock vs available quantity 
 - **DONE** Stiky buttons on cart when is empty
 - **DONE** Not enougth items for all items in cart
+- Save state of cart in local session
+- Refacto cart store to use name of item instead id
 
 #### Next
 - Items Logs, input and output transactions
@@ -48,8 +50,6 @@ Launches a json-server with the information of db.json file.\
 - Refacto Item components, use only one
 - Refacto INC-DEC items
 - Unify Yup validation schemas
-- Refacto cart store to use name of item instead id
-- Save state of cart in local session
   
 #### Fix
 

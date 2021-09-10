@@ -1,3 +1,12 @@
+:root {
+  --theme-color: tomato;
+  --color-primary: rgb(139, 231, 155);
+  --color-hover: rgb(51, 221, 79);
+  --color-text-header: rgb(216, 230, 218);
+  --color-dark: #343434;
+  --color-shadow: rgba(0, 0, 0, 0.2);
+}
+
 * {
   box-sizing: border-box;
 }

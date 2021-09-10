@@ -10,7 +10,9 @@ import useGetAllItems from './hooks/useGetAllItems'
 import BuyItems from './pages/BuyItems'
 
 const App = () => {
-  useGetAllItems()
+  const state = useGetAllItems()
+
+  if (state === 'init') return <div>Cargando...</div>
 
   return (
     <BrowserRouter>

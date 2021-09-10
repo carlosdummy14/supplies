@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  background-color: tomato;
+  background-color: var(--theme-color);
   z-index: 10;
 }
 
@@ -20,7 +20,7 @@
 
 .link {
   text-decoration: none;
-  color: rgb(216, 230, 218);
+  color: var(--color-text-header);
 }
 
 .Navbar-logo {
@@ -43,7 +43,7 @@
 }
 
 .ShoppingCart-text {
-  color: rgb(216, 230, 218);
+  color: var(--color-text-header);
   width: 50%;
   text-align: end;
 }
