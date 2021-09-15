@@ -3,24 +3,28 @@
 This app is to manage the supplies in the IT deparment.\
 I.e., Printer toners, Inks, Paper, etc.
 
+**This project is only frontend.**
+
 ## Scripts to use
 
 In the project, you can run:
+
+### `npm install`
+
+Install dependencies.
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm server`
+OR
 
-Launches a json-server with the information of db.json file.\
-[http://localhost:3004/items](http://localhost:3004/items)
-
+View on-line in [https://supplies.vercel.app/](https://supplies.vercel.app/).
 
 ## TO DO
 
-- A lot of CSS 
+- Some CSS 
 
 #### Items 
 
@@ -53,6 +57,8 @@ Launches a json-server with the information of db.json file.\
   
 #### Fix
 
+- Deploy
 
+---
 
 Thanks https://iconos8.es/ for some beautiful assets

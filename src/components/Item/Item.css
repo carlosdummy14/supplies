@@ -38,7 +38,8 @@
 }
 
 .Item__description {
-  padding: 0;
+  padding: 0 5px;
+
   margin: 0;
 }
 
