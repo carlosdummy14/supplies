@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { getAllItems } from '../reducers/itemsReducer'
-import { getAll } from '../services/items'
+import { getAll } from '../services/items-json'
 
 const useGetAllItems = () => {
   const dispatch = useDispatch()
